@@ -6,84 +6,94 @@
     <title>Antifeed</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css" media="screen">
+    <link type="text/css" media="all" rel="stylesheet" href="https://cdn.rawgit.com/space10-community/conversational-form/master/dist/conversational-form.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="container">
         <h1>The Antifeed</h1>
-        <p class="lead">News and and editorials outside your comfort zone.</p>
+        <p class="lead">News and editorials outside your comfort zone.</p>
         <p>Online media has become an echo chamber. Algorithms designed by Facebook, Google, Twitter, et. al. to make it easier for you to get the information you want, also make sure you ONLY see information you like. Dissenting opinions and alternate viewpoints
             are hidden from your newsfeeds and search results.</p>
         <p>We want to change that.</p>
         <p>That's why we're building The Antifeed - A weekly newsletter, personally curated for you, using a comination of machine learning and human editorial experitse. The Antifeed will hit your inbox Sunday AM, giving you news and info you need to broaden
             your world view.</p>
+        <hr>
+        <button class="btn btn-primary" id="form-init" type="button" aria-controls="sign-up">Sign Up</button>
+      <div class="col-md-12">
+        <div id="form-outer">
 
-      <div id="sign-up" class="panel-body">
-          <h2>Sign Up</h2>
-        <div cf-context style="padding: 5px;">
-        <form id="conversational" cf-form-element method="POST">
+        <form id="conversational" method="POST"  action="//formspree.io/gene@lancekey.com">
 
-            <input type="text" name="_gotcha" style="display: none">
-            <input type="hidden" name="_next" value="https://space10-community.github.io/conversational-form/thanks.html">
-            <input type="hidden" name="_subject" value="Submission on ConversationalForm">
+                <input type="text" name="_gotcha" style="display: none">
+                <input type="hidden" name="_next" value="/thanks.html">
+                <input type="hidden" name="_subject" value="Submission on Antifeed">
 
-            <div class="form-group">
-                <label for="your-name">Name</label>
-                <input cf-questions="Hi there! What's your name?" type="name" class="form-control" name="your-name" id="your-name">
-            </div>
-
-            <div class="form-group">
-                <label for="your-occupation">Occupation</label>
-                <div class="radio">
-                    <label>
-                                  <input cf-questions="Great to meet you, {previous-answer}! I'm a web form, what do you do?|Awesome, {previous-answer}! And what do you do?" type="radio" name="your-occupation" id="your-occupation-1" value="developer">
+                <div class="form-group">
+                    <label for="your-name">Name</label>
+                    <input cf-questions="Hi there! What's your name?|Please tell me your name." type="name" class="form-control" name="your-name" id="your-name">
+                </div>
+                <div class="form-group">
+                    <label for="your-company">News Source</label>
+                    <input cf-questions="Great to meet you {previous-answer}! How do you like to get your news?" type="text" class="form-control" name="your-news[]" id="your-news">
+                </div>
+                <div class="form-group">
+                    <label for="your-occupation">Occupation</label>
+                    <div class="radio">
+                        <label>
+                                  <input cf-questions="Great, {previous-answer} has some interesting stuff! But I can show you more. So, I'm a web form, what do you do?|Awesome, I love {previous-answer}! And what do you do?" type="radio" name="your-occupation" id="your-occupation-1" value="developer">
                                   Developer
                                 </label>
-                </div>
-                <div class="radio">
-                    <label>
+                    </div>
+                    <div class="radio">
+                        <label>
                                   <input type="radio" name="your-occupation" id="your-occupation-2" value="designer">
                                   Designer
                                 </label>
-                </div>
-                <div class="radio">
-                    <label>
+                    </div>
+                    <div class="radio">
+                        <label>
                                   <input type="radio" name="your-occupation" id="your-occupation-3" value="curious-mind">
-                                  Curious mind
+                                  Strategist
                                 </label>
-                </div>
-                <div class="radio">
-                    <label>
+                    </div>
+                    <div class="radio">
+                        <label>
                                   <input type="radio" name="your-occupation" id="your-occupation-2" value="lost">
                                   Lost cause
                                 </label>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="your-company">Company</label>
-                <input cf-questions="Which company are you with?" type="text" class="form-control" name="your-company" id="your-company">
-            </div>
-            <div class="form-group">
-                <label for="your-email">Email</label>
-                <input cf-questions="If you want to get weekly emails that expand your world view, please give me your email." type="email" class="form-control" name="your-email" id="your-email">
-            </div>
+                <div class="form-group">
+                    <label for="your-company">Company</label>
+                    <input cf-questions="Which company are you with?" type="text" class="form-control" name="your-company" id="your-company">
+                </div>
+                <div class="form-group">
+                    <label for="your-email">Email</label>
+                    <input cf-questions="Thanks. That should be enough to get started. If you want to get weekly emails that expand your world view, please share your email address." type="email" type="email" pattern="\S+@\S+" cf-error="Nope, not correct e-mail." class="form-control"
+                        name="your-email" id="your-email">
+                </div>
 
-            <div class="form-group">
-                <label for="thats-all">Final go</label>
-                <select cf-questions="That's it for now! Have a great day." id="thats-all" class="form-control">
+                <div class="form-group">
+                    <label for="thats-all">Final go</label>
+                    <select cf-questions="That's it for now! Have a great day." id="thats-all" class="form-control">
                                 <option></option>
                                 <option>You too!</option>
                               </select>
-            </div>
+                </div>
 
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-      </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div>
+        </div>
     </div>
-
-    </div>
+    <footer>
+        <p>&#x24B8; Lancekey 2016. Movie Rights reserved.</p>
+    </footer>
     <script type="text/javascript" src="https://rawgit.com/space10-community/conversational-form/master/dist/conversational-form.min.js" crossorigin></script>
+    <script src="scripts/index.js" charset="utf-8"></script>
 </body>
 
 </html>

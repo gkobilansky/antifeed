@@ -1,6 +1,12 @@
-#sign-up {
-    padding: 1rem;
-    margin: 1rem -1rem;
-    border: solid #f7f7f9;
-    border-width: .2rem;
+#conversational {
+ display: none;
+}
+
+#form-outer {
+
+}
+
+footer {
+  text-align: center;
+  padding-top: 2em;
 }
